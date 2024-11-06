@@ -23,7 +23,7 @@ const Canvas = () => {
 
   // Define desired canvas dimensions
   const canvasWidth = 1000;
-  const canvasHeight = 500;
+  const canvasHeight = 450;
 
   const handlePenClick = () => {
     setShowCanvas(true);

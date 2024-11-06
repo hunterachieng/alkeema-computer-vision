@@ -24,7 +24,7 @@ const Sidebar = ({ children }: { children: ReactNode }) => {
           <button
             className={`text-lg py-2 rounded-lg focus:outline-none flex flex-col items-center  space-y-2 ${
               isActive("/image-upload")
-                ? "bg-orange-600 text-white px-12"
+                ? "bg-orange-600 text-white px-10"
                 : "bg-transparent text-white px-3"
             }`}
           >
@@ -38,7 +38,7 @@ const Sidebar = ({ children }: { children: ReactNode }) => {
           <button
             className={`text-lg  py-2 rounded-lg focus:outline-none flex flex-col items-center space-y-2 ${
               isActive("/canvas")
-                ? "bg-orange-600 text-white px-[76.5px]"
+                ? "bg-orange-600 text-white px-[72px]"
                 : "bg-transparent text-white px-3"
             }`}
           >

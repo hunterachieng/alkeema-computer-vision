@@ -18,8 +18,14 @@ export const POST = async (request: Request) => {
       {
         method: "POST",
         body: formData,
+     
       }
     );
+
+    if (!response.ok) {
+        console.error("Server response error:", response.status, await response.text());
+        throw new Error("Server error: " + response.statusText);
+      }
 
     const result = await response.json();
     return new Response(JSON.stringify(result), {

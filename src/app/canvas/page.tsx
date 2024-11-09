@@ -17,8 +17,7 @@ const Canvas = () => {
   const [tool, setTool] = useState<"pen" | "eraser">("pen");
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState<{
-    predicted_digit: string;
-    confidence_score: number;
+    [key: string]: { predicted_digit: string; confidence_score: number };
   } | null>(null);
 
   // Define desired canvas dimensions
@@ -55,7 +54,7 @@ const Canvas = () => {
 
     if (tool === "pen") {
       ctx.strokeStyle = "black";
-      ctx.lineWidth = 2;
+      ctx.lineWidth = 4;
       ctx.lineTo(event.nativeEvent.offsetX, event.nativeEvent.offsetY);
       ctx.stroke();
     } else if (tool === "eraser") {
@@ -84,7 +83,7 @@ const Canvas = () => {
     formData.append("image", blob, "drawing.png");
     try {
       const response = await uploadImage(formData);
-      setResults(response.best_prediction);
+      setResults(response.all_predictions);
       setLoading(false);
     } catch (error) {
       console.error("Upload failed:", error);
@@ -118,13 +117,7 @@ const Canvas = () => {
   }
 
   if (results) {
-    return (
-      <Results
-        predictedDigit={results.predicted_digit}
-        confidenceScore={results.confidence_score}
-        onClose={handleCloseResults}
-      />
-    );
+    return <Results predictions={results} onClose={handleCloseResults} />;
   }
 
   return (

@@ -13,8 +13,7 @@ const UploadImage: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [imageName, setImageName] = useState("");
   const [results, setResults] = useState<{
-    predicted_digit: string;
-    confidence_score: number;
+    [key: string]: { predicted_digit: string; confidence_score: number };
   } | null>(null);
 
   const handleButtonClick = () => {
@@ -45,7 +44,7 @@ const UploadImage: React.FC = () => {
       setLoading(true);
       const response = await uploadImage(formData);
       console.log("Upload response:", response);
-      setResults(response.best_prediction);
+      setResults(response.all_predictions);
       setLoading(false);
     } catch (error) {
       console.error("Upload failed:", error);
@@ -67,13 +66,7 @@ const UploadImage: React.FC = () => {
   }
 
   if (results) {
-    return (
-      <Results
-        predictedDigit={results.predicted_digit}
-        confidenceScore={results.confidence_score}
-        onClose={handleCloseResults}
-      />
-    );
+    return <Results predictions={results} onClose={handleCloseResults} />;
   }
 
   return (

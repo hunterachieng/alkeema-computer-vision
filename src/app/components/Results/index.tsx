@@ -20,8 +20,8 @@ const Results: React.FC<ResultsProps> = ({ predictions, onClose }) => {
         <div className="">
           <Image
             src={"/images/results.png"}
-            width={300}
-            height={300}
+            width={250}
+            height={250}
             alt="results"
           />
         </div>
